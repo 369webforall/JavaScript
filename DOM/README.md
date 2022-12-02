@@ -18,4 +18,4 @@
 </html>
 ```
 
-![Tree Structure]('./images/dom.png')
+![Tree Structure](./images/dom.png)
