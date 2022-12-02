@@ -73,8 +73,9 @@ document.getElementById("demo").innerHTML = "Hello World!";
 ```
 document.getElementById(id)	- Find an element by element id
 document.getElementsByTagName(name)	- Find elements by tag name
-document.getElementsByClassName() - Find elements by class name
 document.getElementsByClassName(name)- 	Find elements by class name
+document.querySelector() - Find elemet with id, class and tag name
+document.querySelectorAll() - Find elemets with matching class or tag name
 ```
 
 ### Changing HTML Elements
@@ -94,6 +95,54 @@ document.removeChild(element)	Remove an HTML element
 document.appendChild(element)	Add an HTML element
 document.replaceChild(new, old)	Replace an HTML element
 document.write(text)	Write into the HTML output stream
+
+```
+
+## Add Element to the body or to any other elements
+
+```
+const body = document.body;
+body.append("hellow");
+body.append(element)
+body.appendChild(element)
+```
+
+## Create element and set text to our element ()
+
+- createElement
+- textContent
+- innerText
+
+```
+const body = document.body;
+
+const div = document.createElement('div')
+div.textContent = "Hi i am dev"
+
+body.append(div)
+
+or
+
+div.innerText = "Hi i am dev with innerText"
+
+body.append(div)
+
+```
+
+## Render HTML Elements in your page
+
+```
+let body = document.body;
+
+let div = document.createElement('div')
+
+let elements = `
+<h1>Heading one</h1>
+<p>Some long text</p>
+`
+div.innerHTML = elements
+
+body.append(div)
 
 ```
 
