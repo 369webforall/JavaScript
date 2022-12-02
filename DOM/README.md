@@ -96,3 +96,26 @@ document.replaceChild(new, old)	Replace an HTML element
 document.write(text)	Write into the HTML output stream
 
 ```
+
+## Projects
+
+```
+
+Project 1: Build a simple counter.
+
+Requirements:
+-Create a Github repository for this project.
+-The count starts at 0
+-Have two buttons on the screen, one to increase (+) the count by 1, and one button to lower (-) the count by 1.
+-Pressing the plus button increases the count by 1, pressing the minus button decreases by 1
+-Create a Github repository for this project and write Git commits as you go.
+
+
+Project 2: Build a background color switcher.
+
+Requirements:
+-Create a Github repository for this project.
+-Create an HTML select dropdown with at least 5 color options in it
+-use the "onchange" attribute so that every time a user selects a color using the dropdown, it calls your JavaScript function that changes the background color of the BODY to the color selected in the dropdown
+
+```
