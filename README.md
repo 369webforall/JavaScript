@@ -13,3 +13,5 @@ Github.
 **
 [Github Link](https://github.com/dev1980/javascript-practice-exercises)
 \*\*
+
+[YTV-1-JS-Basic](https://youtu.be/hjZMuPSJbw8)
