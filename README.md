@@ -15,3 +15,5 @@ Github.
 \*\*
 
 [YTV-1-JS-Basic](https://youtu.be/hjZMuPSJbw8)
+
+[YTV-2-JS-Basic](https://youtu.be/x-VgxF0WznY)
