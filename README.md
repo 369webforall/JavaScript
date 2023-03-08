@@ -17,3 +17,5 @@ Github.
 [YTV-1-JS-Basic](https://youtu.be/hjZMuPSJbw8)
 
 [YTV-2-JS-Basic](https://youtu.be/x-VgxF0WznY)
+
+[YTV-3-JS-Basic](https://youtu.be/bxGxHIond90)
