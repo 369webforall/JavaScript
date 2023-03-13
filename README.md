@@ -24,4 +24,8 @@ Github.
 
 [YTV-5-JS-Basic-loop](https://youtu.be/KDFjfgj1IcQ)
 
-[YTV-4-JS-Basic-loop/array](https://www.youtube.com/watch?v=qIIIhq4UXgw)
+[YTV-6-JS-Basic-loop/array](https://www.youtube.com/watch?v=qIIIhq4UXgw)
+
+[YTV-7-JS-Basic-array](https://youtu.be/kTYpOtNESrU)
+
+[YTV-8-JS-Basic-array](https://youtu.be/n2lFeXmht3Y)
