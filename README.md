@@ -31,3 +31,5 @@ Github.
 [YTV-8-JS-Basic-array](https://youtu.be/n2lFeXmht3Y)
 
 [YTV-9-JS-Basic-array/nesting](https://youtu.be/JsFZO9tUKs4)
+
+[YTV-10-JS-Basic-array/nesting](https://youtu.be/wjNCP3hyJhM)
