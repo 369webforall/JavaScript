@@ -34,4 +34,6 @@ Github.
 
 [YTV-10-JS-Basic-array/nesting](https://youtu.be/wjNCP3hyJhM)
 
-[YTV-11-JS-Basic-array/nesting](https://youtu.be/zNmoSdTwnq4)
+[YTV-11-JS-Basic-array/nesting/object](https://youtu.be/zNmoSdTwnq4)
+
+[YTV-12-JS-Basic-object](https://youtu.be/8PY8nfJR83E)
