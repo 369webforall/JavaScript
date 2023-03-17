@@ -38,6 +38,10 @@ Github.
 
 [YTV-12-JS-Basic-object](https://youtu.be/8PY8nfJR83E)
 
+[YTV-13-JS-Basic-object](https://youtu.be/096PG_DvUO8)
+
+[YTV-14-JS-Execution Context](https://youtu.be/ekO6HuUNEvI)
+
 # JavaScript Advance concept.
 
 ## How JavaScript Works & Execution Context
