@@ -131,4 +131,18 @@ console.log(Arithmetics.division(100, 5));
 
 In Javascript, functions can be assigned to variables in the same way that strings or arrays can. They can be passed into other functions as parameters or returned from them as well. A “higher-order function” is a function that accepts functions as parameters and/or returns a function.
 
+```
+find the area,  circumference and diameter fromthe given array of radius.
+Formula:
+area - PI*r*r
+circumference - 2*PI*r
+diameter - 2 * r
+
+Write a function calculateArea, calculateCircumference, calculateDiameter.
+
+
+const radius =[2,5,3,4,6];
+
+```
+
 ## map, filter & reduce
