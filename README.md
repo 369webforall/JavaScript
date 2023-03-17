@@ -54,7 +54,7 @@ Once the memory creation phase is complete the code execute line by line.
 As soon as javascript program run global execution context is created.
 It has two phase, memory phase. It create memory for function and variable in global scope.
 
-![Execution Context](./images/js2.jpg)
+![Execution Context](./images/js-ce2.png)
 
 ## Hoisting in JavaScript (variables & functions)
 
