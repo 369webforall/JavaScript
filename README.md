@@ -42,6 +42,10 @@ Github.
 
 [YTV-14-JS-Execution Context](https://youtu.be/ekO6HuUNEvI)
 
+[YTV-15-JS-object revision and function](https://youtu.be/7BZNiMvtxdA)
+
+[YTV-16-JS-DOM](https://youtu.be/BWjYCuFNIhY)
+
 # JavaScript Advance concept.
 
 ## How JavaScript Works & Execution Context
