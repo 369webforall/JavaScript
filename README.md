@@ -140,17 +140,205 @@ console.log(Arithmetics.division(100, 5));
 In Javascript, functions can be assigned to variables in the same way that strings or arrays can. They can be passed into other functions as parameters or returned from them as well. A “higher-order function” is a function that accepts functions as parameters and/or returns a function.
 
 ```
-find the area,  circumference and diameter from the given array of radius.
-Formula:
-area - PI*r*r
-circumference - 2*PI*r
-diameter - 2 * r
+//find the area,  circumference and diameter from the given array of radius.
+//Formula:
+//area - PI*r*r
+//circumference - 2*PI*r
+//diameter - 2 * r
 
-Write a function calculateArea, calculateCircumference, calculateDiameter.
+//Write a function calculateArea, calculateCircumference, calculateDiameter.
 
 
 const radius =[2,5,3,4,6];
 
+
+function area(r) {
+  return Math.PI * r * r;
+}
+
+function circumference(r) {
+  return 2 * Math.PI * r;
+}
+
+function diameter(r) {
+  return 2 * r;
+}
+
+function calculate(radius, logic) {
+  let area = [];
+  for (let i = 0; i < radius.length; i++) {
+    area.push(logic(radius[i]));
+  }
+  return area;
+}
+
+console.log(calculate(radius, area));
+console.log(calculate(radius, circumference));
+console.log(calculate(radius, diameter));
+
 ```
 
 ## map, filter & reduce
+
+```
+let radius = [2, 3, 4, 5];
+
+let result = radius.map(function (r) {
+  return r * 2;
+});
+
+console.log(result);
+
+const output = radius.filter(function (num) {
+  return num % 2 === 0;
+});
+
+console.log(output);
+
+// sum , larger number
+
+let sum = radius.reduce((acc, val) => {
+  acc = acc + val;
+  return acc;
+}, 0);
+
+console.log(sum);
+
+```
+
+- function statement or function decleration
+- function expression
+- arrow function - es6
+
+```
+
+// function statement or function decleration
+
+a();
+
+function a() {
+  console.log('function statement');
+}
+
+a();
+
+// function expression
+
+const b = function () {
+  console.log('function expression');
+};
+
+// b();
+
+function c(callback) {
+  callback();
+}
+
+c(b);
+// What is the difference between function statement and expression  - Hoisting
+
+// function are first class citizen -  because we can use function as value,
+
+// Higher order function - when a function is passed as value then it call call back function and fuction receiving value is call higher order function. c is higher order function and b is call  back function.
+
+// arrow function - es6
+
+const area = () => {
+  let num = 20;
+
+  return 20 * 5;
+};
+
+console.log(area());
+
+// map, filter, reduce ( higher order function)
+
+```
+
+# todo-app
+
+```
+// index.html
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Things todo</title>
+  </head>
+  <body>
+    <h1>Things to do</h1>
+    <input type="text" id="title" placeholder="enter todo" />
+    <input type="date" id="date" />
+    <button id="btn">Add todo</button>
+    <hr />
+    <div id="display"></div>
+    <script src="./script.js"></script>
+  </body>
+</html>
+
+// script.js
+
+
+//MVC
+
+// Model or data
+
+let todos = [
+  { title: 'let go for walk', date: '2023-03-22', id: 1 },
+  { title: 'Go for shopping', date: '2023-03-22', id: 2 },
+  { title: 'go for driving', date: '2023-03-22', id: 3 },
+];
+
+// controller
+
+let btn = document.getElementById('btn');
+
+btn.addEventListener('click', addTodo);
+
+function addTodo() {
+  let title = document.getElementById('title').value;
+  let date = document.getElementById('date').value;
+  let id = new Date().getTime();
+  todos.push({ title, date, id });
+
+  render();
+}
+
+function deleteTodo(e) {
+  console.log(e);
+  let deleteId = Number(e.target.id);
+  console.log(deleteId);
+  todos = todos.filter((todo) => {
+    console.log(todo);
+    return todo.id !== deleteId;
+  });
+  render();
+}
+// veiw
+
+function render() {
+  document.getElementById('display').innerHTML = '';
+
+  todos.map((todo) => {
+    let div = document.createElement('div'); // <div></div>
+    div.innerText = todo.title + ' ' + todo.date;
+
+    let deleteBtn = document.createElement('button');
+    deleteBtn.innerText = 'Delete';
+    deleteBtn.id = todo.id;
+    deleteBtn.style = 'margin-left: 12px; margin-bottom: 12px; cursor:pointer;';
+    deleteBtn.onclick = deleteTodo;
+    div.append(deleteBtn);
+    let display = document.getElementById('display');
+    console.log(display);
+    display.append(div);
+  });
+}
+
+render();
+
+
+```
