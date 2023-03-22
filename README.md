@@ -46,6 +46,10 @@ Github.
 
 [YTV-16-JS-DOM](https://youtu.be/BWjYCuFNIhY)
 
+[YTV-17-JS-Higher order function](https://youtu.be/k5ELyKkMVhY)
+
+[YTV-18-JS-todo-app](https://youtu.be/DXyZ0N9InFY)
+
 # JavaScript Advance concept.
 
 ## How JavaScript Works & Execution Context
