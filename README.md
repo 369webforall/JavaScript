@@ -274,9 +274,11 @@ console.log(area());
   </head>
   <body>
     <h1>Things to do</h1>
+    <div class="todo">
     <input type="text" id="title" placeholder="enter todo" />
     <input type="date" id="date" />
     <button id="btn">Add todo</button>
+    </div>
     <hr />
     <div id="display"></div>
     <script src="./script.js"></script>
@@ -290,11 +292,23 @@ console.log(area());
 
 // Model or data
 
-let todos = [
-  { title: 'let go for walk', date: '2023-03-22', id: 1 },
-  { title: 'Go for shopping', date: '2023-03-22', id: 2 },
-  { title: 'go for driving', date: '2023-03-22', id: 3 },
-];
+//MVC
+
+// Model or data
+
+let todos;
+
+let getData = JSON.parse(localStorage.getItem('todos'));
+if (Array.isArray(getData) && getData.length > 0) {
+  todos = getData;
+} else {
+  todos = [
+    { title: 'let go for walk', date: '2023-03-22', id: 1 },
+    { title: 'Go for shopping', date: '2023-03-22', id: 2 },
+    { title: 'go for driving', date: '2023-03-22', id: 3 },
+  ];
+  saveToLocalStorage();
+}
 
 // controller
 
@@ -302,12 +316,18 @@ let btn = document.getElementById('btn');
 
 btn.addEventListener('click', addTodo);
 
+function saveToLocalStorage() {
+  localStorage.setItem('todos', JSON.stringify(todos));
+}
+
 function addTodo() {
   let title = document.getElementById('title').value;
   let date = document.getElementById('date').value;
   let id = new Date().getTime();
   todos.push({ title, date, id });
-
+  document.getElementById('title').value = '';
+  document.getElementById('date').value = '';
+  saveToLocalStorage();
   render();
 }
 
@@ -319,6 +339,41 @@ function deleteTodo(e) {
     console.log(todo);
     return todo.id !== deleteId;
   });
+  saveToLocalStorage();
+  render();
+}
+
+let index;
+
+function updateTodo(e) {
+  let targetId = Number(e.target.id);
+
+  todos.map((todo, i) => {
+    if (todo.id === targetId) {
+      index = i;
+      document.getElementById('title').value = todo.title;
+      document.getElementById('btn').style = 'display: none';
+      let btnUpdate = document.createElement('button');
+      btnUpdate.innerText = 'Update';
+      btnUpdate.setAttribute('id', 'btnU');
+      btnUpdate.onclick = updateData;
+      console.log(btnUpdate);
+      let todoUpdate = document.querySelector('.todo');
+      todoUpdate.append(btnUpdate);
+    }
+  });
+}
+
+function updateData() {
+  let obj = todos[index];
+  let title = document.getElementById('title').value;
+
+  let newObj = { ...obj, title };
+  todos[index] = newObj;
+  saveToLocalStorage();
+  document.getElementById('title').value = '';
+  document.getElementById('btnU').remove();
+  document.getElementById('btn').style = 'display: block';
   render();
 }
 // veiw
@@ -336,6 +391,13 @@ function render() {
     deleteBtn.style = 'margin-left: 12px; margin-bottom: 12px; cursor:pointer;';
     deleteBtn.onclick = deleteTodo;
     div.append(deleteBtn);
+
+    let updateBtn = document.createElement('button');
+    updateBtn.innerText = 'Update';
+    updateBtn.id = todo.id;
+    updateBtn.onclick = updateTodo;
+
+    div.append(updateBtn);
     let display = document.getElementById('display');
     console.log(display);
     display.append(div);
@@ -343,6 +405,5 @@ function render() {
 }
 
 render();
-
 
 ```
