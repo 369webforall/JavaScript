@@ -48,7 +48,9 @@ Github.
 
 [YTV-17-JS-Higher order function](https://youtu.be/k5ELyKkMVhY)
 
-[YTV-18-JS-todo-app](https://youtu.be/DXyZ0N9InFY)
+[YTV-18-JS-todo-app- part-1](https://youtu.be/DXyZ0N9InFY)
+
+[YTV-19-JS-todo-app- part-2](https://youtu.be/ArLXjiTGcg4)
 
 # JavaScript Advance concept.
 
