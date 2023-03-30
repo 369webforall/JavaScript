@@ -52,6 +52,8 @@ Github.
 
 [YTV-19-JS-todo-app- part-2](https://youtu.be/ArLXjiTGcg4)
 
+[YTV-20-JS-Browser API-](https://youtu.be/MqymLeq-uSQ)
+
 # JavaScript Advance concept.
 
 ## How JavaScript Works & Execution Context
