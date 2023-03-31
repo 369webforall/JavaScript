@@ -716,6 +716,19 @@ Requirements:
 -When the user submits the quiz, add a message underneath each question letting them know if they got it right/wrong (give them the correct answer).
 
 ```
+- Quiz app code
+
+```
+
+//html
+
+//css
+
+// js
+
+const quizData = [{question:'What does HTML stand for?', a:'Hyperlinks and Text Markup Language', b:'Hyper Text Markup Language', c:'Home Tool Markup Language', d:'non of the above', correct:'b'},{question:'Choose the correct HTML tag for the largest heading?', a:'<heading>', b:'<h6>', c:'<head>', d:'<h1>', correct:'d'},{question:'What does HTML stand for?', a:'Hyperlinks and Text Markup Language', b:'Hyper Text Markup Language', c:'Home Tool Markup Language', d:'non of the above', correct:'b'}]
+
+```
 
 ```
 
