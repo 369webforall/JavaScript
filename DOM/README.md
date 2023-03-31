@@ -927,11 +927,17 @@ d: 'non of the above',
 correct: 'b',
 },
 ];
+
 let quiz = document.getElementById('quiz');
+
 let question = document.getElementById('question');
+
 let a_answer = document.getElementById('a_answer');
+
 let b_answer = document.getElementById('b_answer');
+
 let c_answer = document.getElementById('c_answer');
+
 let d_answer = document.getElementById('d_answer');
 
 let answer = document.querySelectorAll('.answer');
