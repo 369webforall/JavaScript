@@ -267,6 +267,58 @@ Requirements:
 ```
 
 ```
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Problem 1</title>
+  </head>
+  <body>
+    <h1 class="counter-display">(..)</h1>
+    <button class="counter-minus">-</button>
+    <button class="reset">Reset</button>
+    <button class="counter-plus">+</button>
+
+    <script src="./script.js"></script>
+  </body>
+</html>
+
+
+// script
+
+let counterDisplayElem = document.querySelector('.counter-display');
+let counterMinusElem = document.querySelector('.counter-minus');
+let counterPlusElem = document.querySelector('.counter-plus');
+let reset = document.querySelector('.reset');
+
+let count = 0;
+
+updateDisplay();
+
+counterPlusElem.addEventListener('click', () => {
+  count++;
+  updateDisplay();
+});
+
+counterMinusElem.addEventListener('click', () => {
+  count--;
+  updateDisplay();
+});
+
+reset.addEventListener('click', () => {
+  count = 0;
+  updateDisplay();
+});
+
+function updateDisplay() {
+  counterDisplayElem.innerHTML = count;
+}
+
+
+```
+
+```
 
 Project 2: Build a background color switcher.
 
@@ -274,6 +326,44 @@ Requirements:
 -Create a Github repository for this project.
 -Create an HTML select dropdown with at least 5 color options in it
 -use the "onchange" attribute so that every time a user selects a color using the dropdown, it calls your JavaScript function that changes the background color of the BODY to the color selected in the dropdown
+
+```
+
+```
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Problem 2</title>
+
+    <style>
+
+        body{
+            transition: all 1.5s;
+        }
+    </style>
+  </head>
+  <body>
+
+    <select onchange="color(this.value)">
+        <option value="">Color</option>
+        <option value="blue">Blue</option>
+        <option value="green">Green</option>
+        <option value="pink">Pink</option>
+        <option value="purple">Purple</option>
+        <option value="black">Black</option>
+    </select>
+
+
+    <script>
+        function color(value) {
+            document.body.style.backgroundColor=value;
+
+        }
+    </script>
+  </body>
+</html>
 
 ```
 
@@ -292,6 +382,11 @@ Requirements:
 ```
 
 ```
+number-guessing game
+
+``
+```
+
 Project 4: Build a rock, paper, scissors game.
 
 Requirements:
@@ -303,6 +398,202 @@ Requirements:
 ```
 
 ```
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8" />
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<title>Rock papper scrissor game</title>
+
+<link rel="stylesheet" href="./style.css" />
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>Computer Choice: <span id="computerChoice">Paper</span></h2>
+
+<h2>Your Choice: <span id="yourChoice">Rock</span></h2>
+
+<h2>Result: <span id="result">Result</span></h2>
+
+<button id="rock">Rock</button>
+
+<button id="paper">Paper</button>
+
+<button id="scissor">scissor</button>
+
+</div>
+
+<script src="./script.js"></script>
+
+</body>
+
+</html>
+
+//css
+
+.container {
+
+background-color: steelblue;
+
+color: white;
+
+padding: 12px;
+
+border-radius: 8px;
+
+max-width: 600px;
+
+margin: 0 auto;
+
+}
+
+button {
+
+padding: 8px 16px;
+
+cursor: pointer;
+
+}
+
+// script
+
+```
+let computerChoiceDisplay = document.getElementById('computerChoice');
+
+let yourChoiceDisplay = document.getElementById('yourChoice');
+
+let resultDisplay = document.getElementById('result');
+
+
+
+
+let computerChoice;
+
+let yourChoice;
+
+let result;
+
+
+
+
+let btn = document.querySelectorAll('button');
+
+btn.forEach((btn) => {
+
+  btn.addEventListener('click', () => {
+
+    if (btn.id === 'rock') {
+
+      yourChoice = 'rock';
+
+    }
+
+    if (btn.id === 'paper') {
+
+      yourChoice = 'paper';
+
+    }
+
+    if (btn.id === 'scissor') {
+
+      yourChoice = 'scissor';
+
+    }
+
+    yourChoiceDisplay.innerHTML = yourChoice;
+
+    getComputerChoice();
+
+    getResult();
+
+  });
+
+});
+
+
+
+
+function getComputerChoice() {
+
+  let randomNumber = Math.floor(Math.random() * 3) + 1;
+
+  if (randomNumber === 1) {
+
+    computerChoice = 'rock';
+
+  }
+
+  if (randomNumber === 2) {
+
+    computerChoice = 'paper';
+
+  }
+
+  if (randomNumber === 3) {
+
+    computerChoice = 'scissor';
+
+  }
+
+  computerChoiceDisplay.innerHTML = computerChoice;
+
+}
+
+
+
+
+function getResult() {
+
+  if (computerChoice === yourChoice) {
+
+    result = "It's a draw";
+
+  }
+
+  if (computerChoice === 'rock' && yourChoice === 'paper') {
+
+    result = 'You win';
+
+  } else if (computerChoice === 'rock' && yourChoice === 'scissor') {
+
+    result = 'Computer Win';
+
+  } else if (computerChoice === 'paper' && yourChoice === 'scissor') {
+
+    result = 'You Win';
+
+  } else if (computerChoice === 'paper' && yourChoice === 'rock') {
+
+    result = 'Computer Win';
+
+  } else if (computerChoice === 'scissor' && yourChoice === 'paper') {
+
+    result = 'Computer Win';
+
+  } else if (computerChoice === 'scissor' && yourChoice === 'rock') {
+
+    result = 'You Win';
+
+  }
+
+  resultDisplay.innerHTML = result;
+
+}
+
+```
+
 Project 5: Build a clock using JavaScript.
 
 Requirements:
@@ -311,8 +602,111 @@ Requirements:
 -The clock should run by itself. (Hint: look at JavaScript setInterval function)
 
 ```
+- clock
+```
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8" />
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<title>Digital Clock</title>
+
+<link rel="stylesheet" href="./style.css" />
+
+</head>
+
+<body>
+
+<!-- Project 5: Build a clock using JavaScript.
+
+Requirements:
+
+-Create a Github repository for this project.
+
+-Display the hours, minutes, and seconds.
+
+-The clock should run by itself. (Hint: look at JavaScript setInterval function) -->
+
+<div id="clock" class="display">10:50:20 "AM"</div>
+
+<script src="./script.js"></script>
+
+</body>
+
+</html>
+
+//css
+
+body {
+
+background-color: rgb(11, 48, 36);
+
+color: white;
+
+height: 100vh;
+
+border: 5px solid red;
+
+display: flex;
+
+justify-content: center;
+
+align-items: center;
+
+}
+
+// script
+
+let clock = document.getElementById('clock');
+
+function displayTime() {
+
+let date = new Date();
+
+let hrs = date.getHours();
+
+let mins = date.getMinutes();
+
+let sec = date.getSeconds();
+
+let ampm = 'AM';
+
+if (hrs === 0) {
+
+hrs = 12;
+
+}
+
+if (hrs > 12) {
+
+hrs = hrs - 12;
+
+ampm = 'PM';
+
+}
+
+let time = `${hrs} : ${mins} : ${sec} : ${ampm}`;
+
+clock.innerHTML = time;
+
+}
+
+displayTime();
+
+setInterval(displayTime, 1000);
 
 ```
+
+```
+
 Project 6: Build a three-question quiz.
 
 Requirements:
@@ -320,9 +714,11 @@ Requirements:
 -Create an HTML form with a three-question quiz
 -Each question should have four multiple-choice answers to choose from.
 -When the user submits the quiz, add a message underneath each question letting them know if they got it right/wrong (give them the correct answer).
+
 ```
 
 ```
+
 Project 7: Build a tip calculator.
 
 Requirements:
@@ -335,10 +731,15 @@ Requirements:
 ```
 
 ```
+
 Project 8: Build a ToDo App
 
 Requirements:
 -Create a Github repository for this project.
 -A user must be able to add, edit, and delete a todo item.
 -Hint: use JavaScript localStorage to store the todos
+
+```
+
+
 ```
