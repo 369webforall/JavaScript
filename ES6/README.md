@@ -4,13 +4,13 @@ ECMAScript 2015 or ES2015 is a significant update to the JavaScript programming 
 It is the first major update to the language since ES5 which was standardized in 2009.
 Therefore, ES2015 is often called ES6.
 
+# Section 1. New ES6 syntax
+
 # Resources
 
 [Freecode camp](https://www.freecodecamp.org/learn)
 
 [ES6 -Tutorial](https://www.javascripttutorial.net/es6/)
-
-# Section 1. New ES6 syntax
 
 ## Difference between var and let variable
 
