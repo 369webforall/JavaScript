@@ -382,7 +382,104 @@ Requirements:
 ```
 
 ```
-number-guessing game
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Number gussing game</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <div id="game-board">
+    <p>Please enter the number between 1 to 100</p>
+    <label for="num">Enter your guess: <input type="text" id="userNumber"></label>
+    <button id="btn">Submit</button>
+
+    <p id="lastGuess"></p>
+    <p id="lowHigh"></p>
+    <h3 id="win"></h3>
+
+</div>
+
+
+    <script src="./script.js"></script>
+</body>
+</html>
+
+//css
+
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+   margin-top: 30px;
+}
+
+.game-board{
+    background-color: aquamarine;
+    padding: 20px;
+}
+
+button{
+    padding: 8px 16px;
+    background-color: steelblue;
+    color: white;
+    border-radius:8px;
+    cursor: pointer;
+    border: none;
+}
+
+input {
+    padding: 6px;
+}
+
+// script
+
+let btn = document.getElementById('btn');
+console.log(btn);
+
+let computerGuess = Math.floor(Math.random() * 100 + 1);
+
+let lastGuess = document.getElementById('lastGuess');
+let lowHigh = document.getElementById('lowHigh');
+let win = document.getElementById('win');
+
+let counter = 1;
+let message = '';
+
+let maxTry = 5;
+
+btn.addEventListener('click', guessNumber);
+
+function guessNumber() {
+  console.log(counter);
+  let userGuess = parseInt(document.getElementById('userNumber').value);
+  if (counter === 1) {
+    message += 'Previous number ';
+    lastGuess.innerText = message
+  }
+
+  message += userGuess + ' ';
+
+  if (counter !== maxTry) {
+    lastGuess.innerText = message;
+    if (userGuess === computerGuess) {
+      win.textContent = `You guess the correct number and you win ${userGuess}`;
+    }
+
+    if (userGuess < computerGuess) {
+      lowHigh.innerText = 'Please guess the higher number';
+    }
+    if (userGuess > computerGuess) {
+      lowHigh.innerText = 'Please guess the lower number';
+    }
+    counter++;
+  } else {
+    win.innerText = `Computer win the game and the computer guess is ${computerGuess}`;
+  }
+}
 
 ``
 ```
@@ -714,6 +811,190 @@ Requirements:
 -Create an HTML form with a three-question quiz
 -Each question should have four multiple-choice answers to choose from.
 -When the user submits the quiz, add a message underneath each question letting them know if they got it right/wrong (give them the correct answer).
+
+```
+- Quiz app code
+
+```
+
+//html
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz App</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <div class="container" id="quiz">
+        <div class="header">
+            <h2 id="question">Quation</h2>
+            <ul>
+                <li><input type="radio" id="a" name="answer" class="answer"><label for="a" id="a_answer">answer</label></li>
+                <li><input type="radio" id="b" name="answer" class="answer"><label for="b" id="b_answer">answer</label></li>
+                <li><input type="radio" id="c" name="answer" class="answer"><label for="c" id="c_answer">answer</label></li>
+                <li><input type="radio" id="d" name="answer" class="answer"><label for="d" id="d_answer">answer</label></li>
+            </ul>
+        </div>
+        <button id="btn">Submit Answer</button>
+    </div>
+
+    <script src="./script.js"></script>
+
+</body>
+</html>
+
+//css
+
+body {
+background-color: lightsteelblue;
+display: flex;
+align-items: center;
+justify-content: center;
+height: 100vh;
+}
+
+.container {
+width: 600px;
+background-color: aliceblue;
+padding: 40px;
+border-radius: 8px;
+}
+
+button {
+display: block;
+padding: 6px 12px;
+background-color: steelblue;
+font-size: 24px;
+border: none;
+border-radius: 8px;
+cursor: pointer;
+color: white;
+}
+
+ul {
+list-style: none;
+}
+
+label {
+font-size: 18px;
+}
+
+// js
+
+const quizData = [
+{
+question: 'What does HTML stand for?',
+a: 'Hyperlinks and Text Markup Language',
+b: 'Hyper Text Markup Language',
+c: 'Home Tool Markup Language',
+d: 'non of the above',
+correct: 'b',
+},
+{
+question: 'What does HTML stand for?',
+a: 'Hyperlinks and Text Markup Language',
+b: 'Hyper Text Markup Language',
+c: 'Home Tool Markup Language',
+d: 'non of the above',
+correct: 'b',
+},
+{
+question: 'What does HTML stand for?',
+a: 'Hyperlinks and Text Markup Language',
+b: 'Hyper Text Markup Language',
+c: 'Home Tool Markup Language',
+d: 'non of the above',
+correct: 'b',
+},
+{
+question: 'What does HTML stand for?',
+a: 'Hyperlinks and Text Markup Language',
+b: 'Hyper Text Markup Language',
+c: 'Home Tool Markup Language',
+d: 'non of the above',
+correct: 'b',
+},
+{
+question: 'What does HTML stand for?',
+a: 'Hyperlinks and Text Markup Language',
+b: 'Hyper Text Markup Language',
+c: 'Home Tool Markup Language',
+d: 'non of the above',
+correct: 'b',
+},
+];
+
+let quiz = document.getElementById('quiz');
+
+let question = document.getElementById('question');
+
+let a_answer = document.getElementById('a_answer');
+
+let b_answer = document.getElementById('b_answer');
+
+let c_answer = document.getElementById('c_answer');
+
+let d_answer = document.getElementById('d_answer');
+
+let answer = document.querySelectorAll('.answer');
+
+let btn = document.getElementById('btn');
+
+btn.addEventListener('click', checkAnswer);
+
+let quizIndex = 0;
+
+let score = 0;
+
+function loadQuestion() {
+deselectAnswer();
+let currentQuiz = quizData[quizIndex];
+question.textContent = currentQuiz.question;
+a_answer.textContent = currentQuiz.a;
+b_answer.textContent = currentQuiz.b;
+c_answer.textContent = currentQuiz.c;
+d_answer.textContent = currentQuiz.d;
+}
+
+loadQuestion();
+
+function getAnswer() {
+let selectedAnswer = undefined;
+answer.forEach((answerEach) => {
+if (answerEach.checked) {
+selectedAnswer = answerEach.id;
+}
+});
+return selectedAnswer;
+}
+
+function deselectAnswer() {
+answer.forEach((answerEach) => {
+answerEach.checked = false;
+});
+}
+
+function checkAnswer() {
+let answer = getAnswer();
+
+if (answer) {
+if (answer === quizData[quizIndex].correct) {
+score += 1;
+}
+
+    quizIndex += 1;
+    if (quizIndex < quizData.length) {
+      loadQuestion();
+    } else {
+      quiz.innerHTML = `<h1> You scoured ${score} / out of ${quizData.length} </h1>`;
+    }
+
+}
+}
 
 ```
 
