@@ -239,3 +239,34 @@ the arguments are what you pass into the function.
 ## Arrow Functions
 
 ## Promises
+
+# Projects - ES6
+
+## Project 1
+
+Add a new function to your ToDos app that initially loads ToDos data from an API.
+
+Requirements:
+
+- Update the ToDos app from the previous project to initially load the localStorage of ToDos by fetching the ToDos resources in the JSONPlaceholder API.
+- fetch() function On the page load, if the Todos array is empty, load it with the Todos from this API. Otherwise, if it's not empty, it should load what's currently stored.
+
+Resources:
+
+https://jsonplaceholder.typicode.com/todos
+
+## Project 2
+
+- Create a Recipe App by integrating the "TheMealDB" API's random recipe endpoint.
+
+Requirements:
+
+- Create a Github repository for this project.
+- When the page first loads, it should display a random recipe, complete with a picture of the meal, name of the meal, a button to watch the YouTube video, and the instructions of how to make the meal, along with the list of ingredients.
+- When a user clicks a button called "new recipe", it should show a new random and update the content on the page using JavaScript.
+
+Note: use fetch function to fetch the data.
+
+Resources:
+
+- https://www.themealdb.com/api.php
