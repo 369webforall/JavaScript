@@ -12,6 +12,8 @@ Therefore, ES2015 is often called ES6.
 
 [ES6 -Tutorial](https://www.javascripttutorial.net/es6/)
 
+[ES6 Modules](https://www.theodinproject.com/lessons/node-path-javascript-es6-modules)
+
 ## Difference between var and let variable
 
     The var variables belong to the global scope when you define them outside a function.
@@ -270,3 +272,5 @@ Note: use fetch function to fetch the data.
 Resources:
 
 - https://www.themealdb.com/api.php
+
+## Project 3
