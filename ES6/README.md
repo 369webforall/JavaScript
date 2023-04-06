@@ -552,19 +552,22 @@ iconSize: [50, 32],
 iconAnchor: [25, 16]
 });
 
-const marker = L.marker([0,0], {icon: issIcon}).addTo(map);
+const marker = L.marker([0, 0], { icon: issIcon }).addTo(map);
 
+async function IssLocation() {
+  const response = await fetch(
+    'https://api.wheretheiss.at/v1/satellites/25544'
+  );
 
-async function getIssLocation(){
-    const response = await fetch('https://api.wheretheiss.at/v1/satellites/25544')
-
-    const data = await response.json();
-   const {latitude, longitude} = data;
-marker.setLatLng([latitude, longitude]);
-   document.getElementById('lat').textContent = latitude;
-   document.getElementById('long').textContent = longitude;
+  const data = await response.json();
+  const { latitude, longitude } = data;
+  document.getElementById('lat').textContent = latitude;
+  document.getElementById('long').textContent = longitude;
+  marker.setLatLng([latitude, longitude]);
+  map.setView([latitude, location], 2);
 }
 
-getIssLocation();
+IssLocation();
 
+setInterval(IssLocation, 1000);
 ```
