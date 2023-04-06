@@ -273,4 +273,298 @@ Resources:
 
 - https://www.themealdb.com/api.php
 
+## Code
+
+html
+
+```
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Recipe finder</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="grid">
+        <header>
+          <h1>Meal Finder</h1>
+        </header>
+
+        <main>
+          <div class="form">
+            <input type="text" placeholder="search meal" id="meal" />
+            <button id="btn">Search Meal</button>
+          </div>
+          <div id="displayMeal" class="display"></div>
+        </main>
+
+        <footer>
+          <p>This app belongs to ABC company, &copy;<span id="date"></span></p>
+        </footer>
+      </div>
+    </div>
+    <script src="./script.js"></script>
+  </body>
+</html>
+
+```
+
+css
+
+```
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&display=swap');
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+}
+img {
+  width: 100%;
+  object-fit: cover;
+  height: 150px;
+  border-radius: 8px;
+}
+
+h1 {
+  font-size: 36px;
+  font-weight: bold;
+}
+
+h2 {
+  font-size: 26px;
+}
+
+p {
+  font-size: 18px;
+}
+.wrapper {
+  width: 80%;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.grid {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  height: 100vh;
+}
+
+header {
+  background-color: orange;
+}
+
+main {
+}
+
+.card {
+  max-width: 200px;
+  background-color: antiquewhite;
+  padding: 5px;
+  border-radius: 8px;
+}
+
+input {
+  display: block;
+  padding: 2px;
+}
+
+button {
+  background-color: orange;
+  border: none;
+
+  cursor: pointer;
+  border-radius: 12px;
+  padding: 4px 8px;
+  display: block;
+}
+
+.form {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin: 12px;
+}
+
+.display {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+```
+
+script.js
+
+```
+document.getElementById('date').innerText = new Date().getFullYear();
+
+let btn = document.getElementById('btn');
+
+btn.addEventListener('click', searchMeal);
+
+async function searchMeal() {
+  let searchText = document.getElementById('meal').value;
+  let response = await fetch(
+    `https://www.themealdb.com/api/json/v1/1/search.php?s=${searchText}`
+  );
+  let data = await response.json();
+  console.log(data.meals);
+  if (data.meals) {
+    displayMeal(data.meals);
+  } else {
+    console.log('no data found');
+  }
+}
+
+function displayMeal(meals) {
+  let html = '';
+  meals.map((meal) => {
+    html += `
+ <div class="card">
+              <img
+                src=${meal.strMealThumb}
+              />
+              <h2>Meal Name: ${meal.strMeal}</h2>
+              <h3>Category: ${meal.strCategory}</h3>
+              <p>
+               ${meal.strInstructions.slice(0, 30)}
+              </p>
+              <a
+                href=${meal.strYoutube}
+                target="_blank"
+                >You Tube video</a
+              >
+            </div>
+`;
+    let display = document.getElementById('displayMeal');
+    display.innerHTML = html;
+  });
+}
+
+
+```
+
 ## Project 3
+
+- International Space Station Mapping
+
+### Resources
+
+- [Where the iss -Documentation](https://wheretheiss.at/w/developer)
+
+- https://api.wheretheiss.at/v1/satellites/25544
+
+- [map-leaflet](https://leafletjs.com/)
+
+- [space station icon](https://www.svgrepo.com/svg/118233/space-station)
+
+- get data from api link.
+
+```
+async function getData(){
+    const response = await fetch('https://api.wheretheiss.at/v1/satellites/25544')
+
+    const data = await response.json();
+   const {latitude, longitude} = data;
+   document.getElementById('lat').textContent = latitude;
+   document.getElementById('long').textContent = longitude;
+}
+
+getData();
+
+// index.html
+
+<div>
+<h2>
+Latitude: <span id="lat"></span> <br/>
+Longitude: <span id="long"></span>
+</h2>
+</div>
+```
+
+- Next step is to display the location in map.
+- we will use leaflet an open-source JavaScript library
+  for mobile-friendly interactive maps.
+
+## Preparing your page
+
+Before writing any code for the map, you need to do the following preparation steps on your page:
+
+- Include Leaflet CSS file in the head section of your document:
+
+```
+ <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
+     integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI="
+     crossorigin=""/>
+
+```
+
+- Include Leaflet JavaScript file after Leaflet’s CSS:
+
+```
+ <!-- Make sure you put this AFTER Leaflet's CSS -->
+ <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
+     integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
+     crossorigin=""></script>
+```
+
+- Put a div element with a certain id where you want your map to be:
+
+```
+ <div id="issMap"></div>
+
+```
+
+- Make sure the map container has a defined height, for example by setting it in CSS:
+
+```
+#map { height: 180px; }
+```
+
+- now let's use the map object in code.
+
+```
+const map = L.map('issMap).setView([0,0],1)
+
+const tileUrl = 'https://tile.openstreetmap.org/{z}/{x}/{y}.png';
+
+const attribution = '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+
+const tiles = L.tileLayer(tileUrl, {
+   attribution
+});
+
+tiles.addTo(map);
+
+//create marker icon
+
+const issIcon =L.icon({
+iconUrl: 'issImg.png',
+iconSize: [50, 32],
+iconAnchor: [25, 16]
+});
+
+const marker = L.marker([0,0], {icon: issIcon}).addTo(map);
+
+
+async function getIssLocation(){
+    const response = await fetch('https://api.wheretheiss.at/v1/satellites/25544')
+
+    const data = await response.json();
+   const {latitude, longitude} = data;
+marker.setLatLng([latitude, longitude]);
+   document.getElementById('lat').textContent = latitude;
+   document.getElementById('long').textContent = longitude;
+}
+
+getIssLocation();
+
+```
