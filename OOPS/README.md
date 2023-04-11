@@ -4,6 +4,10 @@
 - Tic Tac Toe - Basic JavaScript
 - Tic Tac Toe - Factory Function
 
+# Youtube video
+
+[OOP-YT](https://youtu.be/6hqAZfhPHw4)
+
 # Organizing Your JavaScript Code Introduction
 
 One of the most daunting parts of JavaScript is learning how to organize your code. The reason this subject can be so overwhelming is not because JavaScript is so much more complex than other languages, but because it is incredibly forgiving! Many languages force you into using specific patterns and data structures in your code, but that is not true in JavaScript.
