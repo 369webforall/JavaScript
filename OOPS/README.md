@@ -259,3 +259,95 @@ console.log(sum);
 we can also use use arrow function or ananomus function to create IIFE.
 
 [ IIFE](https://www.javascripttutorial.net/javascript-immediately-invoked-function-expression-iife/)
+
+# Tic Tac Toe Game code
+
+```
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./style.css" />
+    <title>Tic Tac Toe Game</title>
+  </head>
+  <body>
+    <div class="grid">
+      <div class="row">
+        <div class="col" id="0" onclick="handleClick(this)"></div>
+        <div class="col" id="1" onclick="handleClick(this)"></div>
+        <div class="col" id="2" onclick="handleClick(this)"></div>
+      </div>
+      <div class="row">
+        <div class="col" id="3" onclick="handleClick(this)"></div>
+        <div class="col" id="4" onclick="handleClick(this)"></div>
+        <div class="col" id="5" onclick="handleClick(this)"></div>
+      </div>
+      <div class="row">
+        <div class="col" id="6" onclick="handleClick(this)"></div>
+        <div class="col" id="7" onclick="handleClick(this)"></div>
+        <div class="col" id="8" onclick="handleClick(this)"></div>
+      </div>
+    </div>
+    <script src="./script.js"></script>
+  </body>
+</html>
+
+// css
+
+.row {
+  display: flex;
+  width: 150px;
+  margin: 0px auto;
+}
+
+.col {
+  width: 40px;
+  height: 40px;
+  border: 2px solid green;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 26px;
+  cursor: pointer;
+}
+
+// script
+
+let currentPlayer = 'X';
+let arr = Array(9).fill(null);
+
+function checkWinner() {
+  if (
+    (arr[0] !== null && arr[0] === arr[1] && arr[1] === arr[2]) ||
+    (arr[3] !== null && arr[3] === arr[4] && arr[4] === arr[5]) ||
+    (arr[6] !== null && arr[6] === arr[7] && arr[7] === arr[8]) ||
+    (arr[0] !== null && arr[0] === arr[3] && arr[3] === arr[6]) ||
+    (arr[1] !== null && arr[1] === arr[4] && arr[4] === arr[7]) ||
+    (arr[2] !== null && arr[2] === arr[5] && arr[5] === arr[5]) ||
+    (arr[0] !== null && arr[0] === arr[5] && arr[5] === arr[8]) ||
+    (arr[2] !== null && arr[2] === arr[5] && arr[5] === arr[6])
+  ) {
+    document.write(`Winner is ${currentPlayer} , good job`);
+    return;
+  }
+
+  if (!arr.some((e) => e === null)) {
+    document.write(`Draw, no one is winner`);
+    return;
+  }
+}
+
+function handleClick(el) {
+  let id = Number(el.id);
+  if (arr[id] !== null) return;
+  arr[id] = currentPlayer;
+  console.log(arr);
+  el.innerText = currentPlayer;
+  checkWinner();
+  currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
+}
+
+
+```
