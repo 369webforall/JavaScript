@@ -351,3 +351,124 @@ function handleClick(el) {
 
 
 ```
+
+# Library-app code (working progress)
+
+```
+// html
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My School library</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <form id="libraryForm">
+      <label for="title">Title: <input type="text" id="title" /></label>
+      <label for="author">Author: <input type="text" id="author" /></label>
+      <div>
+        <h3>Type of Book</h3>
+        <label for="type"
+          ><input type="radio" id="computer" name="book" value="computer" />
+          Computer</label
+        >
+
+        <label for="type">
+          <input type="radio" id="science" name="book" value="science" />
+          Science</label
+        >
+        <label for="type">
+          <input type="radio" id="fiction" name="book" value="fiction" />
+          Fiction</label
+        >
+      </div>
+
+      <div>
+        <button id="btn">Add Book</button>
+      </div>
+    </form>
+
+    <div id="display"></div>
+    <script src="./script.js"></script>
+  </body>
+</html>
+
+// script
+
+let myLibrary = [];
+
+function Book(title, author, type) {
+  // the constructor...
+  this.title = title;
+  this.author = author;
+  this.type = type;
+}
+
+function Display() {}
+
+Display.prototype.render = function () {
+  console.log('render');
+  let htmlUi = '';
+  myLibrary.map((book) => {
+    htmlUi += `
+  <h2> Book Title: ${book.title}</h2>
+  <p>Author: ${book.author}</p>
+  <p>Type: ${book.type}</p>
+  `;
+  });
+
+  let display = document.getElementById('display');
+  display.innerHTML = htmlUi;
+};
+
+Display.prototype.clear = function () {
+  const libraryForm = document.getElementById('libraryForm');
+  libraryForm.reset();
+};
+const libraryForm = document.getElementById('libraryForm');
+libraryForm.addEventListener('submit', addBookToLibrary);
+
+function addBookToLibrary(e) {
+  // do stuff here
+  let title = document.getElementById('title').value;
+  let author = document.getElementById('author').value;
+  let type;
+  let computer = document.getElementById('computer');
+  let science = document.getElementById('science');
+  let fiction = document.getElementById('fiction');
+  console.log(computer);
+  console.log(science);
+  console.log(fiction);
+  if (computer.checked) {
+    type = computer.value;
+  }
+  if (science.checked) {
+    type = science.value;
+  }
+  if (fiction.checked) {
+    type = fiction.value;
+  }
+
+  let book = new Book(title, author, type);
+
+  myLibrary.push(book);
+  console.log(myLibrary);
+
+  let display = new Display();
+  display.render();
+
+  display.clear();
+
+  e.preventDefault();
+}
+
+// const book = new Book('Java', 'Mz', 'programming');
+// myLibrary.push(book);
+// console.log(myLibrary);
+
+
+```
