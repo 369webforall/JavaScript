@@ -730,5 +730,6 @@ const gameFactory = () => {
 };
 
 const game = gameFactory();
+game.renderBoard();
 
 ```
