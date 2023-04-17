@@ -472,3 +472,263 @@ function addBookToLibrary(e) {
 
 
 ```
+
+# Factory function (tic-tac-toe game code)
+
+index.html
+
+```
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tic Tac Toe Game with factory function</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="form">
+        <h1>Tic Tac Toe Game</h1>
+        <p>Please Register to play the game</p>
+        <label for="player1"
+          >Player1 Name: <input type="text" id="player1"
+        /></label>
+        <label for="player2"
+          >Player2 Name: <input type="text" id="player2"
+        /></label>
+        <button class="btn" id="start" onclick="game.start()">
+          Game Start
+        </button>
+        <button class="btn" id="restart" onclick="game.restart()">
+          Restart Game
+        </button>
+      </div>
+      <div class="message"></div>
+      <div id="board">
+        <div class="row" id="board-row">
+          <div class="board-cell" onclick="game.play('00')"></div>
+          <div class="board-cell" onclick="game.play('01')"></div>
+          <div class="board-cell" onclick="game.play('02')"></div>
+        </div>
+        <div class="row" id="board-row">
+          <div class="board-cell" onclick="game.play('10')"></div>
+          <div class="board-cell" onclick="game.play('11')"></div>
+          <div class="board-cell" onclick="game.play('12')"></div>
+        </div>
+        <div class="row" id="board-row">
+          <div class="board-cell" onclick="game.play('20')"></div>
+          <div class="board-cell" onclick="game.play('21')"></div>
+          <div class="board-cell" onclick="game.play('22')"></div>
+        </div>
+      </div>
+    </div>
+    <script src="./script.js"></script>
+  </body>
+</html>
+
+
+```
+
+style.css
+
+```
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.container {
+  width: 80%;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.form {
+  max-width: 400px;
+}
+
+input {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 8px;
+  font-size: 21px;
+}
+
+label {
+  font-size: 21px;
+  margin-top: 16px;
+}
+
+p {
+  font-size: 21px;
+  margin-bottom: 12px;
+}
+
+.btn {
+  background-color: steelblue;
+  color: white;
+  padding: 8px 16px;
+  cursor: pointer;
+  border: none;
+  font-size: 21px;
+}
+
+#restart {
+  display: none;
+}
+
+.message {
+  max-width: 400px;
+  margin: 0 auto;
+  margin-bottom: 15px;
+  font-size: 21px;
+  font-weight: bold;
+}
+#board {
+  max-width: 400px;
+  margin: 0 auto;
+  display: none;
+}
+.row {
+  display: flex;
+}
+
+.board-cell {
+  width: 40px;
+  height: 40px;
+  border: 2px solid blue;
+  cursor: pointer;
+}
+
+```
+
+script.js
+
+```
+const playerFactory = (name, symbol) => {
+  const getName = () => name;
+  const getSymbol = () => symbol;
+
+  return { getName, getSymbol };
+};
+
+const gameFactory = () => {
+  let boardArray = [
+    ['', '', ''],
+    ['', '', ''],
+    ['', '', ''],
+  ];
+
+  let player = [];
+  let turn = 0;
+  let status = 'pending';
+
+  const renderBoard = () => {
+    boardArray.forEach((row, rowIndex) => {
+      row.forEach((cellValue, columnIndex) => {
+        document
+          .querySelector('#board')
+          .querySelector(`#board-row:nth-child(${rowIndex + 1})`)
+          .querySelector(
+            `.board-cell:nth-child(${columnIndex + 1})`
+          ).innerHTML = cellValue;
+      });
+    });
+  };
+
+  const message = (msg) => {
+    document.querySelector('.message').innerHTML = msg;
+  };
+
+  const isWinner = () => {
+    let win = false;
+    const h = ['00-01-02', '10-11-12', '20-21-22'];
+    const v = ['00-10-20', '01-11-21', '02-12-22'];
+    const d = ['00-11-22', '02-11-20'];
+    [...h, ...v, ...d].forEach((move) => {
+      let line = move.split('-'); // [00, 01, 02]
+      if (
+        boardArray[line[0][0]][line[0][1]] ===
+          boardArray[line[1][0]][line[1][1]] &&
+        boardArray[line[1][0]][line[1][1]] ===
+          boardArray[line[2][0]][line[2][1]] &&
+        boardArray[line[0][0]][line[0][1]] !== ''
+      ) {
+        win = true;
+      }
+    });
+
+    return win;
+  };
+
+  const isDraw = () => {
+    return !boardArray.some((line) => line.includes(''));
+  };
+
+  const finish = (type) => {
+    if (type === 'draw') {
+      message(`Game end, it's draw....`);
+    } else if (type === 'win') {
+      message(`Game finished and the winner is ${player[turn].getName()}`);
+    }
+  };
+
+  const play = (move) => {
+    if (status !== 'running') {
+      message('Please start the game first');
+    } else if (boardArray[move[0]][move[1]] === '') {
+      boardArray[move[0]][move[1]] = player[turn].getSymbol();
+      renderBoard();
+      if (isWinner()) {
+        finish('win');
+      } else if (isDraw()) {
+        finish('draw');
+      } else {
+        turn = turn === 0 ? 1 : 0;
+        message(`${player[turn].getName()} it's your turn`);
+        console.log(turn);
+      }
+    }
+  };
+
+  const start = () => {
+    status = 'running';
+    player[0] = playerFactory(document.getElementById('player1').value, 'X'); // {"john", 'X'}
+    player[1] = playerFactory(document.getElementById('player2').value, 'O');
+
+    if (!player[0].getName() || !player[1].getName()) {
+      message(`Please enter both name to play the game`);
+    } else {
+      document.getElementById('start').style.display = 'none';
+      document.getElementById('restart').style.display = 'block';
+      document.getElementById('board').style.display = 'block';
+      renderBoard();
+      message(`${player[turn].getName()} it's your turn`);
+    }
+  };
+
+  const restart = () => {
+    boardArray = [
+      ['', '', ''],
+      ['', '', ''],
+      ['', '', ''],
+    ];
+
+    document.getElementById('start').style.display = 'block';
+    document.getElementById('restart').style.display = 'none';
+    document.getElementById('board').style.display = 'none';
+    turn = 0;
+    document.getElementById('player1').value = '';
+    document.getElementById('player2').value = '';
+    document.querySelector('.message').innerHTML = '';
+  };
+
+  return { renderBoard, start, play, restart };
+};
+
+const game = gameFactory();
+
+```
