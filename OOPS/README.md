@@ -372,16 +372,16 @@ function handleClick(el) {
       <label for="author">Author: <input type="text" id="author" /></label>
       <div>
         <h3>Type of Book</h3>
-        <label for="type"
+        <label for="computer"
           ><input type="radio" id="computer" name="book" value="computer" />
           Computer</label
         >
 
-        <label for="type">
+        <label for="science">
           <input type="radio" id="science" name="book" value="science" />
           Science</label
         >
-        <label for="type">
+        <label for="fiction">
           <input type="radio" id="fiction" name="book" value="fiction" />
           Fiction</label
         >
