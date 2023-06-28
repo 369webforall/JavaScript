@@ -13,4 +13,6 @@
 - loops (for, while)
 - functions
 
+[JS Revision class 1](https://youtu.be/kDj8pCA0TwE)
+
 # Advance js concept
