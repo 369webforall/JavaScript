@@ -10,7 +10,7 @@
 - primitive - number, string, boolean, null, undefined
 - reference - {}, [], ()
 - conditionals (if, else if, else)
-- loops (for, while, switch)
+- loops (for, while)
 - functions
 
 # Advance js concept
