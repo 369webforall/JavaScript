@@ -15,6 +15,8 @@
 
 [JS Revision class 1](https://youtu.be/kDj8pCA0TwE)
 
+[JS Revision class 2](https://youtu.be/y1thzT9SnjE)
+
 # Advance js concept
 
 - Difference between var, let and const
