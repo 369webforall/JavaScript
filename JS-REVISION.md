@@ -30,6 +30,7 @@
 - truthy and falsy
 - forEach and forin
 - functions
+- function decleration, function expression, function statement
 - call back function
 - higher order function
 - first class citizen
@@ -139,6 +140,42 @@ Execution contexts are created and managed by the JavaScript engine as it interp
 The concept of execution contexts is closely related to the scope chain, which determines how variables are resolved during code execution. Each execution context has a reference to its outer (parent) execution context, creating a chain of scopes. This allows variables to be accessed from outer scopes, following the lexical scope rules.
 
 Understanding execution contexts is crucial for understanding variable scoping, hoisting, closures, and how JavaScript manages memory during code execution.
+
+**Points to be noted**
+
+- Every things in javascript happens inside execution context.
+- Assume execution context as a big box which has two part
+
+1.  Memory component
+
+- This is the place wehre all the functions and variables are stored as key value pair.
+  key: value
+  a: 10
+  fn: {...}
+- Memory component is also know as variable environment.
+
+2.  Code component
+
+- This is the place where code is executed line by line.
+- Code component is also known as thread of execution.
+
+**Note:**
+
+- javascript is a synchronous single threaded language.
+- runs one command at a time from top to bottom.
+- once one line of code is finished executing then only more to next line of code.
+
+## closures
+
+A closure is the combination of a function bundled together (enclosed) with references to its surrounding state (the lexical environment). In other words, a closure gives you access to an outer function's scope from an inner function. In JavaScript, closures are created every time a function is created, at function creation time.
+
+## First-class Function
+
+A programming language is said to have First-class functions when functions in that language are treated like any other variable. For example, in such a language, a function can be passed as an argument to other functions, can be returned by another function and can be assigned as a value to a variable.
+
+## Callback function
+
+A callback function is a function passed into another function as an argument, which is then invoked inside the outer function to complete some kind of routine or action.
 
 ## truthy and falsy
 
