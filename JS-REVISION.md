@@ -17,6 +17,15 @@
 
 [JS Revision class 2](https://youtu.be/y1thzT9SnjE)
 
+- execution context
+- browser api (fetch, setTimeOut, document)
+- event loop
+- callback queue, micro task queue
+
+  [JS Revision class 3 - part1](https://youtu.be/DlTnHUe3Xmc)
+
+  [JS Revision class 3 - part2](https://youtu.be/unJ5UV295_M)
+
 # Advance js concept
 
 - Difference between var, let and const
@@ -31,7 +40,7 @@
 - forEach and forin
 - functions
 - function decleration, function expression, function statement
-- call back function
+- callback function
 - higher order function
 - first class citizen
 
@@ -188,3 +197,311 @@ A callback function is a function passed into another function as an argument, w
 **truthy value**
 
 - if it doesn't belong to falsy then is truthy value.
+
+# JS Async
+
+## callback function
+
+- A callback is a function passed as an argument to another function.
+
+// function
+
+function greet(name, callback) {
+console.log('Hi', ' ' + name);
+callback();
+}
+
+function callMe(){
+console.log('I am callback function);
+}
+
+// passing function as an argumenet.
+
+greet('Robert', callMe)
+
+## Built in Higher order function for array.
+
+1. find() - returns the first value of an array element that passes the test.
+2. findIndex() - returns the first index of an array element that passes the test.
+3. forEach() - calls a function for each element
+4. map() - returns a new array calling function for each array element.
+5. filter() - returns a new array with all elements passes the test define by the given function.
+
+6. every() - check wether all elements of the array satisy the give condition or not.
+7. some() -check weather at list one of the elements of the array satisy the give condition or not.
+
+## What is callback hell ?
+
+Callback hell is a phenomenon that happens when multiple callbacks are nested on top of each other. The two common ways of escaping the callback heare are by using promises and async/await. Promises mainly have three stages such as resolved, rejected, and pending. It makes the code more maintainable and understandable.
+
+```javascript
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible"
+		content="IE=edge">
+	<meta name="viewport"
+		content="width=device-width, initial-scale=1.0">
+
+	<title>Callback Hell</title>
+
+	<style>
+		* {
+			padding: none;
+			margin: none;
+			box-sizing: border-box;
+		}
+
+		.word {
+			color: #308d46;
+			font-size: 4rem;
+			transition: all .5s ease-in;
+			margin: 0 5px;
+			transform: translateY(3.8rem);
+			opacity: 0;
+		}
+
+		body {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			width: 95vw;
+			height: 95vh;
+		}
+
+		.container {
+			overflow: hidden;
+			display: flex;
+			flex-direction: row;
+		}
+
+		.animate {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	</style>
+</head>
+
+<body>
+	<div class="container">
+		<h2 class="word">Rain in</h2>
+		<h2 class="word">the</h2>
+		<h2 class="word">forest</h2>
+	</div>
+</body>
+<script>
+	let words = document.querySelectorAll(".word");
+
+	const animateAll = (animate) => {
+		setTimeout(() => {
+			animate(words[0]);
+			setTimeout(() => {
+				animate(words[1]);
+				setTimeout(() => {
+					animate(words[2]);
+				}, 1000)
+			}, 1000)
+		}, 1000)
+	}
+
+	const animate = (word) => {
+		word.classList.add("animate");
+	}
+
+	animateAll(animate);
+</script>
+</html>
+```
+
+**setTimeOut() Function**
+
+setTimeOut(callback, millisecond)
+
+setTimeOut(()=>{
+console.log("hello world")
+}, 3000)
+
+```javascript
+function getCheese(callback) {
+  setTimeOut(() => {
+    const cheese = '🧀';
+    console.log('here is the cheese');
+    callback(cheese);
+  });
+}
+
+function makeDough(cheese, callback) {
+  setTimeOut(() => {
+    const dough = cheese + '🧇';
+    console.log('here is the dough', dough);
+    callback(dough);
+  });
+}
+
+function makePizza(dough, callback) {
+  setTimeOut(() => {
+    const pizza = dough + '🍕';
+    console.log('here is the pizza', pizza);
+    callback(pizza);
+  });
+}
+
+getCheese((cheese) => {
+  console.log('here is the cheese', cheese);
+  makeDough(cheese, (dough) => {
+    console.log('here is the douhg', dough);
+    makePizza(dough, (pizza) => {
+      console.log('here is your pizza', pizza);
+    });
+  });
+});
+```
+
+## Promise
+
+In javascript, a promise is a good way to handle asynchronous operations. It is used to find out if the asynchronous operation is successfully completed or not.
+
+A promise may have one of three states.
+
+- Pending
+- Fulfilled
+- Rejected
+
+**setp1-create promise**
+
+**setep-2 use promise**
+
+- then() method - is called when promise is fulfilled it takes callback function.
+- catch() method - is called when promise is rejected or any error. it also take callback function
+
+- finally() method
+  The finally() method gets executed when the promise is either resolved successfully or rejected.
+
+example
+
+```javascript
+const ticket = new Promise(function (resolve, reject) {
+  const isBoarded = false;
+  if (isBoarded) {
+    resolve('You are in the flight now');
+  } else {
+    reject('Your flight is cancelled');
+  }
+});
+
+ticket
+  .then((data) => {
+    console.log('wohoo', data);
+  })
+  .catch((data) => {
+    console.log('oh no', data);
+  });
+```
+
+example2
+
+```javascript
+function getCheese() {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      const cheese = '🧀';
+      resolve(cheese);
+    }, 2000);
+  });
+}
+
+function makeDough(cheese) {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      const dough = cheese + '🫓';
+      // resolve(dough);
+      reject('Bad cheese');
+    }, 2000);
+  });
+}
+
+function bakePizza(dough) {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      const pizza = dough + '🍕';
+      resolve(pizza);
+    }, 2000);
+  });
+}
+
+getCheese()
+  .then((cheese) => {
+    console.log('here is the cheese', cheese);
+    return makeDough(cheese);
+  })
+  .then((dough) => {
+    console.log('here is the dough', dough);
+    return bakePizza(dough);
+  })
+  .then((pizza) => {
+    console.log('here is the pizza', pizza);
+  })
+  .catch((data) => {
+    console.log('error occured', data);
+  })
+  .finally(() => {
+    console.log('Process ended');
+  });
+```
+
+## async / await
+
+- The keyword async before a function makes the function return a promise:
+
+- The await keyword can only be used inside an async function.
+
+- The await keyword makes the function pause the execution and wait for a resolved promise before it continues:
+
+```javascript
+function getCheese() {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      const cheese = '🧀';
+      resolve(cheese);
+    }, 2000);
+  });
+}
+
+function makeDough(cheese) {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      const dough = cheese + '🫓';
+      // resolve(dough);
+      reject('Bad cheese');
+    }, 2000);
+  });
+}
+
+function bakePizza(dough) {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      const pizza = dough + '🍕';
+      resolve(pizza);
+    }, 2000);
+  });
+}
+
+async function orderPizza() {
+  try {
+    const cheese = await getCheese();
+    console.log('here is the cheese', cheese);
+
+    const dough = await makeDough(cheese);
+    console.log('here is the dough', dough);
+
+    const pizza = await bakePizza(dough);
+    console.log('here is the pizza', pizza);
+  } catch (err) {
+    console.log('error occured', err);
+  }
+  console.log('Process ended');
+}
+
+orderPizza();
+```
