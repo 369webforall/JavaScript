@@ -26,6 +26,10 @@
 
   [JS Revision class 3 - part2](https://youtu.be/unJ5UV295_M)
 
+  - Promise, Async/Await
+
+  [Promise,Async/Await](https://youtu.be/GUD2rPhA08A)
+
 # Advance js concept
 
 - Difference between var, let and const
