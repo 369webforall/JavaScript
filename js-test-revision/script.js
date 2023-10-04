@@ -47,24 +47,68 @@
 // console.log('3mb photo size is uploading');
 
 // browser has some api, fetch, setTimeOut
-console.log('start');
+// console.log('start');
 
-setTimeout(() => {
-  console.log('5mb photo uploaded');
-}, 10000);
+// setTimeout(() => {
+//   console.log('5mb photo uploaded');
+// }, 10000);
 
-setTimeout(() => {
-  console.log('4mb photo uploaded');
-}, 8000);
-setTimeout(() => {
-  console.log('3mb photo uploaded');
-}, 6000);
-setTimeout(() => {
-  console.log('2mb photo uploaded');
-}, 4000);
+// setTimeout(() => {
+//   console.log('4mb photo uploaded');
+// }, 8000);
+// setTimeout(() => {
+//   console.log('3mb photo uploaded');
+// }, 6000);
+// setTimeout(() => {
+//   console.log('2mb photo uploaded');
+// }, 4000);
 
-setTimeout(() => {
-  console.log('1mb photo uploaded');
-}, 2000);
+// setTimeout(() => {
+//   console.log('1mb photo uploaded');
+// }, 2000);
 
-console.log('end');
+// console.log('end');
+
+//Define function
+
+// code we save(define) and can be used (call/ invoke/ execute/ run) later by using the function name / label with parenthesis.
+
+// Thread of execution
+
+// Javascript goes through the code (globally or in a function) line by line and does whatever the of code says to do.
+
+// Memory
+
+// a place to store data (variable environment) where anything defied in the function is stored.
+
+// console.log('start');
+
+// const num = 3;
+// function multiplyBy2(inputNumber) {
+//   const result = inputNumber * 2;
+//   return result;
+// }
+
+// const output = multiplyBy2(num);
+// const newOutput = multiplyBy2(10);
+
+// console.log('end');
+
+// Promise
+
+function display(data) {
+  console.log(data);
+}
+
+const futureData = fetch('https://www.twitter.com/class/tweet/1'); // browser api, http request // async
+futureData.then(display);
+console.log('Print me first');
+
+async function fetchTodo() {
+  try {
+    let todo = await fetch();
+    return await todo.json();
+  } catch (err) {
+    console.log(err);
+  }
+}

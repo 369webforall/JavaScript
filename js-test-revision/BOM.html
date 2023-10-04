@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>BOM Interaction</title>
+  </head>
+  <body>
+    <h1>BOM Interaction Example</h1>
+
+    <!-- Buttons to trigger dialogs and screen size display -->
+    <button id="show">Show Alert</button>
+    <button onclick="showConfirm()">Show Confirm</button>
+    <button onclick="showPrompt()">Show Prompt</button>
+    <button onclick="getScreenSize()">Get Screen Size</button>
+
+    <!-- <script>
+      // Function to display an alert dialog
+
+      alert('this is alert');
+
+      let show = document.getElementById('show');
+
+      show.addEventListener('click', () => {
+        alert('This is addEventListener');
+      });
+      // function showAlert() {
+      //   alert('This is an alert dialog!');
+      // }
+
+      // Function to display a confirm dialog
+      function showConfirm() {
+        const result = confirm('Do you want to confirm something?');
+        if (result) {
+          alert('You confirmed!');
+        } else {
+          alert('You canceled!');
+        }
+      }
+
+      // Function to display a prompt dialog
+      function showPrompt() {
+        const input = prompt('Enter something:');
+        if (input !== null) {
+          alert('You entered: ' + input);
+        } else {
+          alert('You canceled!');
+        }
+      }
+
+      // Function to get and display screen size
+      function getScreenSize() {
+        const screenWidth = window.screen.width;
+        const screenHeight = window.screen.height;
+        alert(
+          `Screen Width: ${screenWidth}px, Screen Height: ${screenHeight}px`
+        );
+      }
+    </script> -->
+
+    <script src="./test.js"></script>
+  </body>
+</html>
