@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Form Validation</title>
+  </head>
+  <body>
+    <form id="myForm">
+      <input type="text" id="nameInput" placeholder="Enter your name" />
+      <input type="number" id="ageInput" placeholder="Enter your age" />
+      <button type="button" id="submitBtn">Submit</button>
+    </form>
+
+    <div id="validationError"></div>
+
+    <script>
+      // Function to validate the input data
+      function validateInput() {
+        var name = document.getElementById('nameInput').value;
+        var age = document.getElementById('ageInput').value;
+
+        // Clear previous validation errors
+        var validationError = document.getElementById('validationError');
+        validationError.innerHTML = '';
+
+        // Check if the name is not empty or whitespace
+        if (!name.trim()) {
+          validationError.innerHTML = 'Name cannot be blank.';
+          return false;
+        }
+
+        // Check if the age is a number and not NaN
+        if (isNaN(age) || age === '') {
+          validationError.innerHTML = 'Age must be a valid number.';
+          return false;
+        }
+
+        // Additional validation, for example, ensuring age is within a specific range
+        if (age < 0 || age > 120) {
+          validationError.innerHTML = 'Age must be between 0 and 120.';
+          return false;
+        }
+
+        // All validation checks passed
+        return true;
+      }
+
+      // Event listener for the submit button
+      document
+        .getElementById('submitBtn')
+        .addEventListener('click', function () {
+          // Validate input before submitting
+          if (validateInput()) {
+            // Input is valid, you can proceed with your logic here
+            alert('Input is valid and can be submitted.');
+          }
+        });
+    </script>
+  </body>
+</html>

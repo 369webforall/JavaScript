@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>handle form data</title>
+  </head>
+  <body>
+    <form id="myForm">
+      <input type="text" id="nameInput" placeholder="Enter your name" />
+      <input type="email" id="emailInput" placeholder="Enter your email" />
+      <select id="genderSelect">
+        <option value="male">Male</option>
+        <option value="female">Female</option>
+        <option value="other">Other</option>
+      </select>
+      <button type="button" id="submitBtn">Submit</button>
+    </form>
+
+    <script>
+      // Function to retrieve form values
+      function getFormValues() {
+        var name = document.getElementById('nameInput').value;
+        var email = document.getElementById('emailInput').value;
+        var gender = document.getElementById('genderSelect').value;
+
+        return {
+          name: name,
+          email: email,
+          gender: gender,
+        };
+      }
+
+      // Function to set form field values
+      function setFormValues(data) {
+        document.getElementById('nameInput').value = data.name;
+        document.getElementById('emailInput').value = data.email;
+        document.getElementById('genderSelect').value = data.gender;
+      }
+
+      // Event listener for the submit button
+
+      let btn = document.getElementById('submitBtn');
+
+      btn.addEventListener('click', function () {
+        // Retrieve form values
+        var formData = getFormValues(); // {name, email, gender}
+
+        // Display the retrieved values (you can replace this with your logic)
+        alert(
+          'Name: ' +
+            formData.name +
+            '\nEmail: ' +
+            formData.email +
+            '\nGender: ' +
+            formData.gender
+        );
+      });
+
+      // Prepopulate form values (e.g., when editing existing data)
+      var initialData = {
+        name: 'John Doe',
+        email: 'johndoe@example.com',
+        gender: 'male',
+      };
+
+      setFormValues(initialData);
+    </script>
+  </body>
+</html>

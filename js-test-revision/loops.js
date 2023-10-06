@@ -1,8 +1,8 @@
 //for
 
-for (let i = 0; i < 5; i++) {
-  console.log(`Iteration ${i}`);
-}
+// for (let i = 0; i < 5; i++) {
+//   console.log(`Iteration ${i}`);
+// }
 
 // for...in loop (for iterating over object properties):
 

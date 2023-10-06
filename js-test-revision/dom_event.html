@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DOM Event</title>
+  </head>
+  <body>
+    <!-- DOM Events: -->
+
+    <!-- DOM events are JavaScript events that are directly attached to DOM elements using their event properties. For example, you can use the onclick event handler to execute code when an element is clicked. -->
+
+    <button id="myButton">Click me</button>
+
+    <script>
+      // Using a DOM event handler
+      document.getElementById('myButton').onclick = function () {
+        alert('Button clicked!');
+      };
+    </script>
+
+    <!-- HTML Attribute Events: -->
+
+    <!-- You can also specify event handlers directly in HTML attributes. This approach is less common nowadays but still works. -->
+
+    <button id="myButton" onclick="alert('Button clicked!')">Click me</button>
+
+    <!-- addEventListener: -->
+
+    <button id="myButton">Click me</button>
+
+    <script>
+      // Using addEventListener
+      var button = document.getElementById('myButton');
+
+      function handleClick() {
+        alert('Button clicked!');
+      }
+
+      button.addEventListener('click', handleClick);
+    </script>
+
+    <!-- You can also remove event listeners using the removeEventListener method. -->
+
+    <script>
+      button.removeEventListener('click', handleClick);
+    </script>
+  </body>
+</html>

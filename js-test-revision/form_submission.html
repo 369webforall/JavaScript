@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Form Submission</title>
+  </head>
+  <body>
+    <form action="submit.php" method="POST" onsubmit="return validateForm()">
+      <input type="text" name="username" placeholder="Username" />
+      <input type="password" name="password" placeholder="Password" />
+      <button type="submit">Submit</button>
+    </form>
+
+    <!-- POST, GET, PUT, DELETE -->
+
+    <!-- In the example above:
+
+The action attribute specifies the URL where the form data will be sent upon submission.
+The method attribute specifies the HTTP method to be used, either POST or GET.
+The onsubmit attribute can specify a JavaScript function to run for client-side validation before submitting the form.
+User Input: Users fill out the form by entering data into the input fields.
+
+Validation: Optionally, you can perform client-side validation using JavaScript to ensure that the user's input meets your requirements. The onsubmit event can trigger validation functions, as shown in the example above.
+
+Form Submission: When the user clicks the "Submit" button or performs an action that triggers the form submission (e.g., pressing Enter within an input field), the browser initiates the submission process.
+
+If the form's method is set to "GET," the form data is appended to the URL as query parameters, and the data is visible in the URL bar. This is suitable for search queries and when you want to bookmark or share the URL.
+
+If the form's method is set to "POST," the form data is sent as part of the HTTP request body, which is not visible in the URL. This method is commonly used for sensitive data like passwords and when you need to send larger amounts of data.
+
+Server-Side Processing: The form data is sent to the server as an HTTP request. The server receives the data and processes it according to the server-side logic defined in your application.
+
+Response: The server may respond to the client with a new web page, data, or other actions based on the form submission. The response is typically sent back to the browser and displayed to the user.
+
+Submission Targets:
+
+The action attribute of the <form> element specifies the URL to which the form data is sent. This URL is often a server-side script or a web application endpoint that processes the data.
+You can specify different submission targets by changing the action attribute. For example, you might submit data to a PHP script (action="process.php") or an API endpoint (action="https://api.example.com/submit"). -->
+  </body>
+</html>
